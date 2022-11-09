@@ -11,6 +11,8 @@ Start off by forking this repository. In your README, write a design doc to outl
 #### Introduction
 - What motivates your project?
 
+The motivation behind my project is a greater exploration in the use of SDFs and experimenting with intuitive ways to set up a ui so that user inputs help to create cool variations of a basic animal structure.
+
 #### Goal
 - What do you intend to achieve with this project?
 
@@ -18,17 +20,37 @@ Start off by forking this repository. In your README, write a design doc to outl
 - You must have some form of reference material for your final project. Your reference may be a research paper, a blog post, some artwork, a video, another class at Penn, etc.  
 - Include in your design doc links to and images of your reference material.
 
+My inspiration was the spore character creator and the student work we viewed in class with the bird editor. 
+
 #### Specification:
 - Outline the main features of your project.
+
+1) SDF cat creation
+2) UI features for manipulation/changing of cat
+3) proccedural texture on cat
+
+Extra time features:
+skeleton/joint based movement of cat
+more proccedural textures including different species
 
 #### Techniques:
 - What are the main technical/algorithmic tools you’ll be using? Give an overview, citing specific papers/articles.
 
+SDFs and raycasting, proccedural texture using normals and noise like what happens in spore. 
+
 #### Design:
 - How will your program fit together? Make a simple free-body diagram illustrating the pieces.
 
+![Blank diagram](https://user-images.githubusercontent.com/65415823/200922817-34dc0fd0-91b5-4551-971f-a440147ee6fc.png)
+
 #### Timeline:
 - Create a week-by-week set of milestones for each person in your group. Make sure you explicitly outline what each group member's duties will be.
+
+Milestone 1: Implement engine for SDFs appearing on the screen. Create a scenegraph type node structure and design the basic cat.
+
+Milestone 2: Convert the cat to SDFs. Add UI options for changing the SDFs that manipulate the form of the cat.
+
+Milestone 3: Add texture and (if time proccedural textures). Catch up on previous milestones. Polish UI and background to make it look nice. (If time add skeleton rigging structure for rigging movement of cat.)
 
 Submit your Design doc as usual via pull request against this repository.
 ## Milestone 1: Implementation part 1 (due 11/16)
