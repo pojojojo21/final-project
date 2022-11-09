@@ -16,11 +16,18 @@ The motivation behind my project is a greater exploration in the use of SDFs and
 #### Goal
 - What do you intend to achieve with this project?
 
+I did not feel like I learn enough about how to make SDFs work in the HW so I would like another chance to work with SDFs and understand them better. I would also like to try to implement the proccedural textures we saw on the spore creatures in class.
+
 #### Inspiration/reference:
 - You must have some form of reference material for your final project. Your reference may be a research paper, a blog post, some artwork, a video, another class at Penn, etc.  
 - Include in your design doc links to and images of your reference material.
 
 My inspiration was the spore character creator and the student work we viewed in class with the bird editor. 
+
+![image](https://user-images.githubusercontent.com/65415823/200924126-3b15fe7e-182e-46b1-b2fd-42beabf21c29.png)
+![image](https://user-images.githubusercontent.com/65415823/200924485-fb3785ba-28e3-4040-894d-dfccb4da55cc.png)
+![image](https://user-images.githubusercontent.com/65415823/200924599-29b04d14-4832-4cbd-b47b-6020d6630cdf.png)
+![image](https://user-images.githubusercontent.com/65415823/200924748-d05e4f6d-cc13-404f-909e-50b4d2708cf5.png)
 
 #### Specification:
 - Outline the main features of your project.
