@@ -11,7 +11,7 @@ Start off by forking this repository. In your README, write a design doc to outl
 #### Introduction
 - What motivates your project?
 
-The motivation behind my project is a greater exploration in the use of SDFs and experimenting with intuitive ways to set up a ui so that user inputs help to create cool variations of a basic animal structure.
+The motivation behind my project is a greater exploration in the use of SDFs and experimenting with intuitive ways to set up a ui so that user inputs help to create cool variations of a basic cat structure.
 
 #### Goal
 - What do you intend to achieve with this project?
