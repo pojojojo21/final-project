@@ -16,7 +16,7 @@ The motivation behind my project is a greater exploration in the use of SDFs and
 #### Goal
 - What do you intend to achieve with this project?
 
-I did not feel like I learn enough about how to make SDFs work in the HW so I would like another chance to work with SDFs and understand them better. I would also like to try to implement the proccedural textures we saw on the spore creatures in class.
+I did not feel like I learned enough about how to make SDFs work in the HW so I would like another chance to work with SDFs and understand them better. I would also like to try to implement the proccedural textures we saw on the spore creatures in class. My goal and end result is a proccedural cat generator with changable values to customize the cat. Through this final project my goal is to learn more about the engine built to make this creator work and the learn more about the most intuitive ways to create an interaction between the user and the user inputs to have an end result that looks good.
 
 #### Inspiration/reference:
 - You must have some form of reference material for your final project. Your reference may be a research paper, a blog post, some artwork, a video, another class at Penn, etc.  
