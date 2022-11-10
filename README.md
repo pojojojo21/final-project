@@ -28,6 +28,7 @@ My inspiration was the spore character creator and the student work we viewed in
 ![image](https://user-images.githubusercontent.com/65415823/200924485-fb3785ba-28e3-4040-894d-dfccb4da55cc.png)
 ![image](https://user-images.githubusercontent.com/65415823/200924599-29b04d14-4832-4cbd-b47b-6020d6630cdf.png)
 ![image](https://user-images.githubusercontent.com/65415823/200924748-d05e4f6d-cc13-404f-909e-50b4d2708cf5.png)
+<img width="728" alt="image" src="https://user-images.githubusercontent.com/65415823/201000111-8361f66f-bf05-4f9c-91c5-518c71603d28.png">
 
 #### Specification:
 - Outline the main features of your project.
@@ -38,12 +39,12 @@ My inspiration was the spore character creator and the student work we viewed in
 
 Extra time features:
 skeleton/joint based movement of cat
-more proccedural textures including different species
+more proccedural textures including different breeds
 
 #### Techniques:
 - What are the main technical/algorithmic tools you’ll be using? Give an overview, citing specific papers/articles.
 
-SDFs and raycasting, proccedural texture using normals and noise like what happens in spore. 
+SDFs and raycasting, proccedural texture using normals and noise like what happens in spore, polishing UI interface 
 
 #### Design:
 - How will your program fit together? Make a simple free-body diagram illustrating the pieces.
