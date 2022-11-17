@@ -73,6 +73,8 @@ We'll check your repository for updates. No need to create a new pull request.
 
 Progress: I have created the SDF engine and designed the basic cat SDF using a lot of IQ's SDFs from his website. I decided that I do not think I want to create necessarily a scene graph structure I just want to implement specific ways to change the cat. I also realize that I did not factor in design the basic cat and then figuring out how to change the shape of the SDFs to best work with the sliders for different features so I will probably spend most of milestone 2 doing that.
 
+<img width="536" alt="image" src="https://user-images.githubusercontent.com/65415823/202383928-3086c5f2-d523-44cc-b4cc-fb14a2463eea.png">
+
 ![image](https://user-images.githubusercontent.com/65415823/202382209-c93fa4ab-560a-48e8-8458-6c48f9ec5328.png)
 
 ## Milestone 3: Implementation part 2 (due 11/28)
