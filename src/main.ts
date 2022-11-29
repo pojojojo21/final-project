@@ -1,6 +1,6 @@
 import {vec2, vec3} from 'gl-matrix';
 // import * as Stats from 'stats-js';
-// import * as DAT from 'dat-gui';
+import * as DAT from 'dat-gui';
 import Square from './geometry/Square';
 import OpenGLRenderer from './rendering/gl/OpenGLRenderer';
 import Camera from './Camera';
@@ -10,8 +10,11 @@ import ShaderProgram, {Shader} from './rendering/gl/ShaderProgram';
 // Define an object with application parameters and button callbacks
 // This will be referred to by dat.GUI's functions that add GUI elements.
 const controls = {
-  tesselations: 5,
   'Load Scene': loadScene, // A function pointer, essentially
+  size: 1.0,
+  posX: 0.0,
+  posY: 0.0,
+  posZ: 0.0,
 };
 
 let square: Square;
@@ -46,7 +49,11 @@ function main() {
   // document.body.appendChild(stats.domElement);
 
   // Add controls to the gui
-  // const gui = new DAT.GUI();
+  const gui = new DAT.GUI()
+  gui.add(controls, 'size', 0.1, 10.0).step(0.1);
+  gui.add(controls, 'posX', -10.0, 10.0).step(1.0);
+  gui.add(controls, 'posY', -10.0, 10.0).step(1.0);
+  gui.add(controls, 'posZ', -10.0, 10.0).step(1.0);
 
   // get canvas and webgl context
   const canvas = <HTMLCanvasElement> document.getElementById('canvas');
@@ -81,6 +88,12 @@ function main() {
     // Use this if you wish
   }
 
+  function processGUI() {
+    // Use this if you wish
+    custom.setSize(controls.size);
+    custom.setPos(controls.posX, controls.posY, controls.posZ);
+  }
+
   // This function will be called every frame
   function tick() {
     camera.update();
@@ -91,6 +104,10 @@ function main() {
     // renderer.render(camera, flat, [
     //   square,
     // ], time);
+
+    // process GUI inputs
+    processGUI();
+
     renderer.render(camera, custom, [
       square,
     ], time);

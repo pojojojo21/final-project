@@ -4,11 +4,13 @@ precision highp float;
 uniform vec3 u_Eye, u_Ref, u_Up;
 uniform vec2 u_Dimensions;
 uniform float u_Time;
+uniform float u_Size;
+uniform vec3 u_Pos;
 
 in vec2 fs_Pos;
 out vec4 out_Col;
 
-#define MAX_RAY_STEPS 512
+#define MAX_RAY_STEPS 256
 #define EPSILON 1e-2
 
 // Want sunlight to be brighter than 100% to emulate High Dynamic Range
@@ -169,47 +171,48 @@ float sceneSDF(vec3 queryPos, out int obj)
   float fb;
 
   // head
-  float nose = sphereSDF(queryPos, vec3(4.0, 4.9, 0.0), 0.7);
-  float uH = sphereSDF(queryPos, vec3(3.2, 5.2, 0.0), 1.0);
+  float nose = sphereSDF(queryPos, u_Pos + vec3(4.0, 6.1, 0.0), 0.7);
+  float uH = sphereSDF(queryPos, u_Pos + vec3(3.2, 6.2, 0.0), 1.0);
   float head = smoothUnion(nose, uH, 0.1);
 
 // body
-  float neck = sdCapsule(queryPos, vec3(1.0, 4.8, 0.0), vec3(3.0, 5.3, 0.0), 0.8 );
-  float uRS = sphereSDF(queryPos, vec3(0.9, 4.4, -0.6), 1.1);
-  float uLS = sphereSDF(queryPos, vec3(0.9, 4.4, 0.6), 1.1);
-  float uLL = sdRoundCone(queryPos, vec3(0.9, 4.4, -0.6), vec3(0.9, 0.0, -0.6), 0.8, 0.4);
-  float uRL = sdRoundCone(queryPos, vec3(0.9, 4.4, 0.6), vec3(0.9, 0.0, 0.6), 0.8, 0.4);
+  float neck = sdCapsule(queryPos, u_Pos + vec3(1.0, 4.8, 0.0), u_Pos + vec3(3.0, 6.4, 0.0), 0.8 );
+  float uRS = sphereSDF(queryPos, u_Pos + vec3(0.9, 4.4, -0.6), 1.1);
+  float uLS = sphereSDF(queryPos, u_Pos + vec3(0.9, 4.4, 0.6), 1.1);
+  float uLL = sdRoundCone(queryPos, u_Pos + vec3(0.9, 4.4, -0.6), u_Pos + vec3(0.9, 0.0, -0.6), 0.8, 0.4);
+  float uRL = sdRoundCone(queryPos, u_Pos + vec3(0.9, 4.4, 0.6), u_Pos + vec3(0.9, 0.0, 0.6), 0.8, 0.4);
   float frontL = smoothUnion(uLL, uRL, 0.1);
 
-  float bURS = sphereSDF(queryPos, vec3(-5.0, 4.4, -0.6), 1.1);
-  float bULS = sphereSDF(queryPos, vec3(-5.0, 4.4, 0.6), 1.1);
-  float bULL = sdRoundCone(queryPos, vec3(-5.0, 4.4, -0.6), vec3(-5.0, 0.0, -0.6), 0.8, 0.4);
-  float bURL = sdRoundCone(queryPos, vec3(-5.0, 4.4, 0.6), vec3(-5.0, 0.0, 0.6), 0.8, 0.4);
+  float bURS = sphereSDF(queryPos, u_Pos + vec3(-5.0, 4.4, -0.6), 1.1);
+  float bULS = sphereSDF(queryPos, u_Pos + vec3(-5.0, 4.4, 0.6), 1.1);
+  float bULL = sdRoundCone(queryPos, u_Pos + vec3(-5.0, 4.4, -0.6), u_Pos + vec3(-5.0, 0.0, -0.6), 0.8, 0.4);
+  float bURL = sdRoundCone(queryPos, u_Pos + vec3(-5.0, 4.4, 0.6), u_Pos + vec3(-5.0, 0.0, 0.6), 0.8, 0.4);
   float backL = smoothUnion(smoothUnion(smoothUnion(bURS, bULS, 0.1), bULL, 0.1), bURL, 0.1);
 
   float legs = smoothUnion(frontL, backL, 0.1);
   float nL = smoothUnion(legs, neck, 0.1);
 
-  float skele = sdCapsule(queryPos, vec3(0.5, 4.8, 0.0), vec3(-5.0, 5.0, 0.0), 1.5 );
+  float skele = sdCapsule(queryPos, u_Pos + vec3(0.5, 4.8, 0.0), u_Pos + vec3(-5.0, 5.0, 0.0), 1.5 );
 
   float nLS = smoothUnion(nL, skele, 0.1);
   float body = smoothUnion(smoothUnion(uRS, uLS, 0.1), nLS, 0.1);
 
+  // float t1 = sphereSDF(queryPos, u_Pos + vec)
 
   // tail
-  float s1 = sdCapsule(queryPos, vec3(-5.0, 6.0, 0.0), vec3(-7.0, 5.4, 0.0), 0.4 );
-  float s2 = sdCapsule(queryPos, vec3(-7.0, 5.4, 0.0), vec3(-8.6, 4.7, 0.0), 0.35 );
-  float s3 = sdCapsule(queryPos, vec3(-8.6, 4.7, 0.0), vec3(-10.0, 4.0, 0.0), 0.3 );
-  float s4 = sdCapsule(queryPos, vec3(-10.0, 4.0, 0.0), vec3(-11.0, 3.2, 0.0), 0.25 );
-  float s5 = sdCapsule(queryPos, vec3(-11.0, 3.2, 0.0), vec3(-12.0, 2.2, 0.0), 0.2 );
-  float s6 = sdCapsule(queryPos, vec3(-12.0, 2.2, 0.0), vec3(-13.0, 1.0, 0.0), 0.2 );
+  float s1 = sdCapsule(queryPos, u_Pos + vec3(-5.0, 6.0, 0.0), u_Pos + vec3(-7.0, 5.4, 0.0), 0.4 );
+  float s2 = sdCapsule(queryPos, u_Pos + vec3(-7.0, 5.4, 0.0), u_Pos + vec3(-8.6, 4.7, 0.0), 0.35 );
+  float s3 = sdCapsule(queryPos, u_Pos + vec3(-8.6, 4.7, 0.0), u_Pos + vec3(-10.0, 4.0, 0.0), 0.3 );
+  float s4 = sdCapsule(queryPos, u_Pos + vec3(-10.0, 4.0, 0.0), u_Pos + vec3(-11.0, 3.2, 0.0), 0.25 );
+  float s5 = sdCapsule(queryPos, u_Pos + vec3(-11.0, 3.2, 0.0), u_Pos + vec3(-12.0, 2.2, 0.0), 0.2 );
+  float s6 = sdCapsule(queryPos, u_Pos + vec3(-12.0, 2.2, 0.0), u_Pos + vec3(-13.0, 1.0, 0.0), 0.2 );
 
   float m1 = smoothUnion(smoothUnion(s5, s6, 0.1), s4, 0.1);
   float tail = smoothUnion(smoothUnion(smoothUnion(s1, s2, 0.1), s3, 0.1), m1, 0.1);
 
   // ears
-  float outLE = sdRoundCone(queryPos, vec3(3.0, 5.5, -0.6), vec3(2.7, 6.5, -0.8), 0.5, 0.3);
-  float outRE = sdRoundCone(queryPos, vec3(3.0, 5.5, 0.6), vec3(2.7, 6.5, 0.8), 0.5, 0.3);
+  float outLE = sdRoundCone(queryPos, u_Pos + vec3(3.0, 6.2, -0.6), u_Pos + vec3(2.7, 7.5, -0.9), 0.5, 0.3);
+  float outRE = sdRoundCone(queryPos, u_Pos + vec3(3.0, 6.2, 0.6), u_Pos + vec3(2.7, 7.5, 0.9), 0.5, 0.3);
 
   float outE = smoothUnion(outLE, outRE, 0.1);
 
@@ -282,28 +285,53 @@ vec3 estimateNormal(vec3 p) {
   ));
 }
 
+vec3 proceduralColor(vec3 nor, Intersection i)
+{
+  // nor = (nor * 0.5) + 0.5;
+  vec3 color;
+  if (nor.x > 0.5) {
+    color = vec3(1.0, 1.0, 1.0);
+  } else {
+    color = vec3(sin(i.position.x * 0.2) * 0.65, 0.3, 0.2);
+  }
+  if (i.position.y > 3.55 + u_Pos.y) {
+    float stripe = gain(nor.x, 0.9);
+    color = mix(vec3(1.0 - (abs(sin(i.position.x * 10.0)) * 0.4),0.1 -  0.1 * abs(sin(i.position.x * 10.0)), 0.0), vec3(1.0,1.0,1.0), stripe);
+  } else {
+    color = vec3(1.0 - (abs(sin(i.position.y * 10.0)) * 0.4), 0.1 -  0.1 * abs(sin(i.position.y * 10.0)), 0.0);
+  }
+  
+  // color = max(vec3(0.65, 0.3,0.2), color);
+  
+  return color;
+}
+
 vec3 getSceneColor(vec2 uv)
 {
     Intersection intersection = getRaymarchedIntersection(uv);
     
     DirectionalLight lights[3];
     vec3 backgroundColor = vec3(0.);
-    lights[0] = DirectionalLight(normalize(vec3(15.0, 10.0, 10.0)),
+    lights[0] = DirectionalLight(normalize(vec3(1.0, 1.0, 1.0)),
                                  SUN_KEY_LIGHT);
-    lights[1] = DirectionalLight(vec3(0., 1., 0.),
+    lights[1] = DirectionalLight(vec3(1., 1., 1.),
                                  SKY_FILL_LIGHT);
-    lights[2] = DirectionalLight(normalize(-vec3(15.0, 0.0, 10.0)),
+    lights[2] = DirectionalLight(normalize(-vec3(1.0, 1.0, 1.0)),
                                  SUN_AMBIENT_LIGHT);
     backgroundColor = SUN_KEY_LIGHT;
     
-    vec3 albedo = vec3(0.3,0.5,0.3);
-    if (intersection.material_id == 2) {
+    vec3 n = estimateNormal(intersection.position);
+
+    // function to determine procedural albedo
+    vec3 albedo = proceduralColor(n, intersection);
+
+     if (intersection.material_id == 2) {
       albedo = vec3(0.0, 0.2, 0.9);
     } else if (intersection.material_id == 1) {
       albedo = vec3(1.0, 1.0, 1.0);
     }
       
-    vec3 n = estimateNormal(intersection.position);
+    
         
     vec3 color = albedo *
                  lights[0].color *
