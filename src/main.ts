@@ -15,6 +15,7 @@ const controls = {
   posX: 0.0,
   posY: 0.0,
   posZ: 0.0,
+  // color: []
 };
 
 let square: Square;

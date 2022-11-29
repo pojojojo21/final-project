@@ -294,11 +294,11 @@ vec3 proceduralColor(vec3 nor, Intersection i)
   } else {
     color = vec3(sin(i.position.x * 0.2) * 0.65, 0.3, 0.2);
   }
-  if (i.position.y > 3.55 + u_Pos.y) {
+  if ((i.position.y > 3.55 + u_Pos.y) || i.position.x < -6.0) {
     float stripe = gain(nor.x, 0.9);
-    color = mix(vec3(1.0 - (abs(sin(i.position.x * 10.0)) * 0.4),0.1 -  0.1 * abs(sin(i.position.x * 10.0)), 0.0), vec3(1.0,1.0,1.0), stripe);
+    color = mix(abs(sin(i.position.x * 10.0)) * vec3(0.5, 0.1, 0.0) + vec3(0.2, 0.0, 0.0), vec3(1.0,1.0,1.0), stripe);
   } else {
-    color = vec3(1.0 - (abs(sin(i.position.y * 10.0)) * 0.4), 0.1 -  0.1 * abs(sin(i.position.y * 10.0)), 0.0);
+    color = abs(sin(i.position.y * 10.0)) * vec3(0.5, 0.1, 0.0) + vec3(0.2, 0.0, 0.0);
   }
   
   // color = max(vec3(0.65, 0.3,0.2), color);
