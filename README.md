@@ -87,6 +87,10 @@ Submission: Add a new section to your README titled: Milestone #3, which should 
 - Detailed output from your generator, images, video, etc.
 We'll check your repository for updates. No need to create a new pull request.
 
+Progress: I implemented one procedural texture that can be expanded upon and implemented the GUI features, that can also be expanded upon, to make the cat editable. Ran into trouble figuringout that the way I implemented it will make it hard to scale anything as a whole so I have to scale individul features. Figured out how to use intersections as a way to mathamatically manipulate the colors to create stripes using positions and patches of color with normals.
+
+<img width="728" alt="image" src="https://user-images.githubusercontent.com/65415823/204440908-f0b7ba7b-7401-4f3a-aa54-c142dde4ef9f.png">
+
 Come to class on the due date with a WORKING COPY of your project. We'll be spending time in class critiquing and reviewing your work so far.
 
 ## Final submission (due 12/5)
