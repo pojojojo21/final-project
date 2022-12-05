@@ -108,7 +108,8 @@ Final Results:
 <img width="313" alt="image" src="https://user-images.githubusercontent.com/65415823/205598241-69872ab8-7e3a-4999-ad7c-9138c080749d.png">
 <img width="295" alt="image" src="https://user-images.githubusercontent.com/65415823/205598381-3fe11faa-cec9-426e-a008-fdfe67bb84fa.png">
 <img width="322" alt="image" src="https://user-images.githubusercontent.com/65415823/205598457-bf7e6f6f-7dff-4934-aa5d-19b954410752.png">
-     
+<img width="339" alt="image" src="https://user-images.githubusercontent.com/65415823/205608619-c598b504-ef2c-4835-8d31-0a6b3de924b0.png">
+
 Post Mortem:
 Overall, I think my project went ok. Unfortunately, I couldn't do everything I wanted to because I ran into a lot of troubles and bugs. I had to pivot away from size changes and a more realistic model because I was having trouble with the SDFs and time constraints. I ended up with something not as realistic but I did get to play around alot with proccedural texturing. I ended up creating a texture generator for the cat and it worked out pretty well.
 
