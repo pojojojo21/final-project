@@ -29,8 +29,11 @@ class ShaderProgram {
   unifUp: WebGLUniformLocation;
   unifDimensions: WebGLUniformLocation;
   unifTime: WebGLUniformLocation;
-  unifSize: WebGLUniformLocation;
   unifPos: WebGLUniformLocation;
+  unifStripe: WebGLUniformLocation;
+  unifBaseCol: WebGLUniformLocation;
+  unifNumStripes: WebGLUniformLocation;
+  unifWhiteFront: WebGLUniformLocation;
 
   constructor(shaders: Array<Shader>) {
     this.prog = gl.createProgram();
@@ -49,8 +52,11 @@ class ShaderProgram {
     this.unifUp   = gl.getUniformLocation(this.prog, "u_Up");
     this.unifDimensions   = gl.getUniformLocation(this.prog, "u_Dimensions");
     this.unifTime   = gl.getUniformLocation(this.prog, "u_Time");
-    this.unifSize   = gl.getUniformLocation(this.prog, "u_Size");
     this.unifPos   = gl.getUniformLocation(this.prog, "u_Pos");
+    this.unifStripe   = gl.getUniformLocation(this.prog, "u_Stripe");
+    this.unifBaseCol   = gl.getUniformLocation(this.prog, "u_BaseCol");
+    this.unifNumStripes = gl.getUniformLocation(this.prog, "u_NumStripes");
+    this.unifWhiteFront = gl.getUniformLocation(this.prog, "u_WhiteFront");
   }
 
   use() {
@@ -87,13 +93,6 @@ class ShaderProgram {
     }
   }
 
-  setSize(s: number) {
-    this.use();
-    if(this.unifSize !== -1) {
-      gl.uniform1f(this.unifSize, s);
-    }
-  }
-
   setPos(pX: number, pY: number, pZ: number) {
     this.use();
     if(this.unifPos !== -1) {
@@ -101,6 +100,33 @@ class ShaderProgram {
     }
   }
 
+  setStripe(s: number) {
+    this.use();
+    if(this.unifStripe !== -1) {
+      gl.uniform1f(this.unifStripe, s);
+    }
+  }
+
+  setBaseCol(col: number[]) {
+    this.use();
+    if(this.unifBaseCol !== -1) {
+      gl.uniform3f(this.unifBaseCol, col[0] / 255.0, col[1] / 255.0, col[2] / 255.0);
+    }
+  }
+
+  setNumStripes(num: number) {
+    this.use();
+    if(this.unifNumStripes !== -1) {
+      gl.uniform1f(this.unifNumStripes, num);
+    }
+  }
+
+  setWhiteFront(b: number) {
+    this.use();
+    if(this.unifWhiteFront !== -1) {
+      gl.uniform1f(this.unifWhiteFront, b);
+    }
+  }
 
   draw(d: Drawable) {
     this.use();

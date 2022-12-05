@@ -11,11 +11,14 @@ import ShaderProgram, {Shader} from './rendering/gl/ShaderProgram';
 // This will be referred to by dat.GUI's functions that add GUI elements.
 const controls = {
   'Load Scene': loadScene, // A function pointer, essentially
-  size: 1.0,
   posX: 0.0,
   posY: 0.0,
   posZ: 0.0,
-  // color: []
+  'Stripe Noise': 5.0,
+  'Base Color': [127.5, 25.5, 0.0],
+  'Number of Stripes': 7.0,
+  'White Front?': 1.0,
+  'Generate New Cat': generate,
 };
 
 let square: Square;
@@ -25,6 +28,13 @@ function loadScene() {
   square = new Square(vec3.fromValues(0, 0, 0));
   square.create();
   // time = 0;
+}
+
+function generate() {
+  controls['Stripe Noise'] = Math.random() * 10.0;
+  controls['Base Color'] = [Math.random() * 255.0, 25.5, 0.0];
+  controls['Number of Stripes'] = Math.random() * 10.0;
+  controls['White Front?'] = Math.round(Math.random());
 }
 
 function main() {
@@ -51,10 +61,14 @@ function main() {
 
   // Add controls to the gui
   const gui = new DAT.GUI()
-  gui.add(controls, 'size', 0.1, 10.0).step(0.1);
   gui.add(controls, 'posX', -10.0, 10.0).step(1.0);
   gui.add(controls, 'posY', -10.0, 10.0).step(1.0);
   gui.add(controls, 'posZ', -10.0, 10.0).step(1.0);
+  gui.add(controls, 'Stripe Noise', 0.1, 10.0).step(0.1);
+  gui.addColor(controls, 'Base Color');
+  gui.add(controls, 'Number of Stripes', 0.0, 10.0).step(0.1);
+  gui.add(controls, 'White Front?', 0.0, 1.0).step(1.0);
+  gui.add(controls, 'Generate New Cat');
 
   // get canvas and webgl context
   const canvas = <HTMLCanvasElement> document.getElementById('canvas');
@@ -69,7 +83,7 @@ function main() {
   // Initial call to load scene
   loadScene();
 
-  const camera = new Camera(vec3.fromValues(0, 25, -10), vec3.fromValues(0, 0, 0));
+  const camera = new Camera(vec3.fromValues(7, 15, 20), vec3.fromValues(0, 0, 0));
 
   const renderer = new OpenGLRenderer(canvas);
   renderer.setClearColor(164.0 / 255.0, 233.0 / 255.0, 1.0, 1);
@@ -91,8 +105,11 @@ function main() {
 
   function processGUI() {
     // Use this if you wish
-    custom.setSize(controls.size);
     custom.setPos(controls.posX, controls.posY, controls.posZ);
+    custom.setStripe(controls['Stripe Noise']);
+    custom.setBaseCol(controls['Base Color']);
+    custom.setNumStripes(controls['Number of Stripes']);
+    custom.setWhiteFront(controls['White Front?']);
   }
 
   // This function will be called every frame
