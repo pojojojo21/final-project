@@ -107,9 +107,6 @@ Final Results:
 1 
 <img width="329" alt="image" src="https://user-images.githubusercontent.com/65415823/205598033-55168fa3-521c-4bcb-a457-1fb0ea285525.png">
 
-2 
-<img width="320" alt="image" src="ht>tps://user-images.githubusercontent.com/65415823/205598133-73c0a593-858f-4f12-b3b5-bd08313ff9ef.png">
-
 3 
 <img width="313" alt="image" src="https://user-images.githubusercontent.com/65415823/205598241-69872ab8-7e3a-4999-ad7c-9138c080749d.png">
 
