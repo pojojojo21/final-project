@@ -257,9 +257,9 @@ float sceneSDF(vec3 queryPos, out int obj)
 
   float eyes = smoothUnion(smoothUnion(smoothUnion(eyelids, eyeballs, 0.4), pupils, 0.4), noseP, 0.4);
   
-  float whisker1 = sdCappedCone(queryPos, u_Pos + vec3(5.3, 6.7, 1.5), u_Pos + vec3(5.3, 5.0, -1.5), 0.01, 0.02);
-  float whisker2 = sdCappedCone(queryPos, u_Pos + vec3(5.3, 5.0, 1.5), u_Pos + vec3(5.3, 6.7, -1.5), 0.01, 0.02);
-  float whisker3 = sdCappedCone(queryPos, u_Pos + vec3(5.3, 5.85, 1.5), u_Pos + vec3(5.3, 5.85, -1.5), 0.01, 0.02);
+  float whisker1 = sdCappedCone(queryPos, u_Pos + vec3(5.3, 6.7, 1.5), u_Pos + vec3(5.3, 5.0, -1.5), 0.05, 0.05);
+  float whisker2 = sdCappedCone(queryPos, u_Pos + vec3(5.3, 5.0, 1.5), u_Pos + vec3(5.3, 6.7, -1.5), 0.05, 0.05);
+  float whisker3 = sdCappedCone(queryPos, u_Pos + vec3(5.3, 5.85, 1.5), u_Pos + vec3(5.3, 5.85, -1.5), 0.05, 0.05);
 
   float whiskers = smoothUnion(smoothUnion(whisker1, whisker2, 0.1), whisker3, 0.1);
 
